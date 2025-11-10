@@ -1,0 +1,185 @@
+# QA Automation con Playwright
+
+Este proyecto contiene pruebas automatizadas utilizando **Playwright** con TypeScript.
+
+## 🚀 Requisitos previos
+
+- Node.js (>= 18)
+- npm
+
+## 📦 Instalación
+
+Instala dependencias:
+
+```bash
+npm install
+Instala navegadores necesarios:
+
+bash
+Copiar código
+npx playwright install
+▶️ Ejecutar las pruebas (modo headless — sin UI)
+bash
+Copiar código
+npx playwright test
+Este comando ejecuta las pruebas en los 3 navegadores:
+
+Chromium
+
+Firefox
+
+WebKit
+
+👀 Ejecutar las pruebas con interfaz gráfica (headed)
+bash
+Copiar código
+npx playwright test --headed
+Esto abre la ventana del navegador físicamente durante la ejecución.
+
+🧠 Ejecutar el modo UI (recomendado)
+bash
+Copiar código
+npx playwright test --ui
+Permite seleccionar tests, ver resultados en tiempo real y debuggear.
+
+🎯 Ejecutar solo un navegador
+Solo Chromium:
+
+bash
+Copiar código
+npx playwright test --project=chromium
+Solo Firefox:
+
+bash
+Copiar código
+npx playwright test --project=firefox
+Solo WebKit:
+
+bash
+Copiar código
+npx playwright test --project=webkit
+📌 Ejecutar un test específico por camino
+bash
+Copiar código
+npx playwright test tests/google.spec.ts
+🔍 Ejecutar un único test dentro de un archivo
+Dentro del archivo:
+
+ts
+Copiar código
+test.only('Mi test', async ({ page }) => {
+  ...
+});
+📓 Ver reporte HTML (después de ejecutar pruebas)
+bash
+Copiar código
+npx playwright show-report
+Esto abre un dashboard con resultados, screenshots y errores.
+
+🧵 Trazas (recording)
+Si está habilitado en playwright.config.ts:
+
+bash
+Copiar código
+npx playwright show-trace test-results/**/trace.zip
+Útil para debug visual.
+
+🎥 Grabar video del test (opcional)
+Agregar en use del config:
+
+ts
+Copiar código
+video: 'on',
+❌ Reintentar pruebas fallidas (retries)
+Activar en playwright.config.ts:
+
+ts
+Copiar código
+retries: 2
+⚡ Paralelismo
+Ejecuta pruebas en paralelo automáticamente. Para desactivar:
+
+bash
+Copiar código
+npx playwright test --workers=1
+🤝 Contribución
+Pull requests son bienvenidos.
+
+📄 Licencia
+MIT
+
+yaml
+Copiar código
+
+---
+
+📌 **Consejo:** puedes guardarlo como `README.md`, en Notion, o en tu repositorio base QA para reutilizarlo.
+
+Cuando quieras, te puedo ayudar a extenderlo con:
+- cómo correr en CI/CD
+- tags para categorizar tests
+- debugging avanzado
+- screenshots automáticos
+
+¡Listo para copiar! 🚀
+
+
+
+
+
+qa-playwright/
+ ├─ config/
+ │   └─ testData.ts
+ ├─ src/
+ │   ├─ core/
+ │   │   ├─ BasePage.ts
+ │   │   ├─ BaseTest.ts
+ │   │   ├─ actions.ts
+ │   │   ├─ assertions.ts
+ │   │   └─ textUtils.ts
+ │   │   └─ Logger.ts
+ │   ├─ pages/
+ │   │   ├─ LoginPage.ts
+ │   │   ├─ InventoryPage.ts
+ │   │   └─ …
+ │   ├─ errors/
+ │       ├─ ElementNotFoundError.ts
+ │       └─ AssertionError.ts
+ │─ logs/
+ │   ├─ execution.log
+ │   └─ api.log
+ ├─ tests/
+ │   ├─ login.spec.ts
+ │   ├─ inventory.spec.ts
+ │   └─ …
+ ├─ reports/
+ └─ playwright.config.ts
+
+
+
+ 🧩 🔖 Lista de selectores CSS más comunes
+Tipo de selector	Ejemplo	Qué selecciona	Equivalente HTML
+Por ID	#user-name	Elemento con id="user-name"	<input id="user-name">
+Por clase	.btn-login	Elemento con class="btn-login"	<button class="btn-login">
+Por etiqueta (tag)	input	Todos los <input>	<input type="text">
+Por atributo exacto	[name="username"]	Elementos con name="username"	<input name="username">
+Por atributo contiene (*=)	[id*="user"]	Elementos cuyo id contiene “user”	<input id="main-user-field">
+Por atributo empieza con (^=)	[id^="login"]	Elementos cuyo id empieza con “login”	<input id="login-email">
+Por atributo termina con ($=)	[id$="button"]	Elementos cuyo id termina con “button”	<button id="submit-button">
+Por múltiples clases	.btn.primary	Elemento que tiene ambas clases: btn y primary	<button class="btn primary">
+Por jerarquía (descendiente)	form input	<input> dentro de <form>	<form><input></form>
+Por hijo directo (>)	form > input	<input> que es hijo directo de <form>	<form><input></form>
+Por elemento hermano (+ o ~)	label + input	<input> que viene inmediatamente después de <label>	<label></label><input>
+Por pseudoclase (posición)	li:first-child	Primer <li> de una lista	<ul><li>…</li></ul>
+Por pseudoclase (estado)	input:focus, button:hover, input:checked	Estado del elemento (enfocado, sobre, marcado, etc.)	—
+Por texto (no CSS, pero soportado por Playwright)	text=Login	Elemento que contiene el texto “Login”	<button>Login</button>
+Por atributo personalizado	[data-testid="login-btn"]	Elemento con atributo data-testid="login-btn"	<button data-testid="login-btn">
+🧠 Combinaciones útiles
+
+Puedes combinarlos para ser más específicos:
+
+Selector	Significado
+form#login-form input[name="username"]	Input con name="username" dentro del formulario con id login-form.
+button.btn-primary[type="submit"]	Botón con clase btn-primary y atributo type="submit".
+div[class*="error"]	Cualquier div que tenga “error” en alguna parte de su clase.
+input[placeholder^="Enter"]	Input cuyo placeholder empieza con “Enter”.
