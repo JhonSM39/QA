@@ -32,7 +32,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',     // ✅ solo guarda capturas si falla el test
     trace: 'retain-on-failure',        // guarda trace solo si falla
     video: 'retain-on-failure',        // guarda video solo si falla
-    baseURL:  process.env.BASE_URL,
+    baseURL:  process.env.BASE_URL || 'https://www.saucedemo.com',
   },
 
   // 🌐 Proyectos (navegadores)
