@@ -26,6 +26,7 @@ jobs:
 
     - name: Run Playwright tests
       env:
+        CI: true
         BASE_URL: ${{ secrets.BASE_URL }}
         STD_USER: ${{ secrets.STD_USER }}
         STD_PASS: ${{ secrets.STD_PASS }}

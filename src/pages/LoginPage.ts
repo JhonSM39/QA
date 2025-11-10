@@ -24,7 +24,7 @@ export class LoginPage extends BasePage {
 
     async navigate() {
         const start = Date.now();
-        await this.page.goto('/')
+        await this.page.goto('/');
         const duration = Date.now() - start;
         logger.info(`Login page load time: ${duration}ms`);
         await expect(this.usernameInput).toBeVisible();
