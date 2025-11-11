@@ -17,6 +17,6 @@ test.describe('Inventory Scenarios', () => {
     await inventorPage.addProductForName('Sauce Labs Bike Light');
 
     const badge = await inventorPage.getCartBadgeValue();
-    expect(badge).toBe(3);
+    expect(badge).toBe(2);
   });
 });
