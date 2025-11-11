@@ -1,12 +1,25 @@
 {
+  "name": "qa-playwright",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier . --write",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.4",
+    "@typescript-eslint/parser": "^8.46.4",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.3.0",
+    "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
-  },
-  "scripts": {},
-  "dependencies": {
-    "dotenv": "^17.2.3"
   }
 }

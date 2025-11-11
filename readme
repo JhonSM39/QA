@@ -183,3 +183,4 @@ form#login-form input[name="username"]	Input con name="username" dentro del form
 button.btn-primary[type="submit"]	Botón con clase btn-primary y atributo type="submit".
 div[class*="error"]	Cualquier div que tenga “error” en alguna parte de su clase.
 input[placeholder^="Enter"]	Input cuyo placeholder empieza con “Enter”.
+```

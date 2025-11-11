@@ -14,7 +14,7 @@ export const test = base.extend<{
   inventorPage: async ({ page }, use) => {
     const inventoryPage = new InventoryPage(page);
     await use(inventoryPage);
-  }
+  },
 });
 
 export const expect = base.expect;
