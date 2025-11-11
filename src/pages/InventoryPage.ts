@@ -1,5 +1,5 @@
 import { BasePage } from '../core/BasePage';
-import { Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 export class InventoryPage extends BasePage {
   //Localizadores

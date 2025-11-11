@@ -1,4 +1,5 @@
-import { Page, Locator, expect } from '@playwright/test';
+import type { Page, Locator } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { logger } from './logger';
 
 export class BasePage {
@@ -19,7 +20,6 @@ export class BasePage {
       await element.click();
     } catch {
       logger.warn('Retrying click with force due to WebKit issues...');
-      await this.page.waitForTimeout(300);
       await element.click();
     }
   }

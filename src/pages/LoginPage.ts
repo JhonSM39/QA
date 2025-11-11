@@ -1,5 +1,6 @@
 import { BasePage } from '../core/BasePage';
-import { Page, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { logger } from '../core/logger';
 
 export class LoginPage extends BasePage {

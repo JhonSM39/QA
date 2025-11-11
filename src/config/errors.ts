@@ -1,4 +1,4 @@
-export const Errors = {
+export const ERRORS = {
   usernameRequired: 'Epic sadface: Username is required',
   passwordRequired: 'Epic sadface: Password is required',
   invalidCredentials:

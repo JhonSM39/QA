@@ -1,4 +1,4 @@
-import { Errors } from '../src/config/errors';
+import { ERRORS } from '../src/config/errors';
 import { test, expect } from '../src/fixtures/pages';
 
 test.describe('Login Scenarios', () => {
@@ -18,18 +18,18 @@ test.describe('Login Scenarios', () => {
   test('Login sin usuario ni contraseña', async ({ loginPage }) => {
     const error = await loginPage.loginWithoutCredentials();
     await loginPage.assertNotLoggedIn();
-    expect(error).toBe(Errors.usernameRequired);
+    expect(error).toBe(ERRORS.usernameRequired);
   });
 
   test('Login sin usuario y con contraseña', async ({ loginPage }) => {
     const error = await loginPage.loginWithoutUsername('standard_user');
     await loginPage.assertNotLoggedIn();
-    expect(error).toBe(Errors.usernameRequired);
+    expect(error).toBe(ERRORS.usernameRequired);
   });
 
   test('Login con usuario y sin contraseña', async ({ loginPage }) => {
     const error = await loginPage.loginWithoutPassword('secret_sauce');
     await loginPage.assertNotLoggedIn();
-    expect(error).toBe(Errors.passwordRequired);
+    expect(error).toBe(ERRORS.passwordRequired);
   });
 });
