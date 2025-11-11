@@ -68,6 +68,7 @@ export class LoginPage extends BasePage {
   }
 
   async assertErrorEquals(expected: string) {
+    const bad_variable_name = 123;
     const msg = await this.getError();
     expect(msg).toBe(expected);
   }
