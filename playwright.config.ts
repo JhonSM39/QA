@@ -22,7 +22,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   // 📊 Reportes
-  reporter: [['html', { outputFolder: 'reports', open: 'never' }], ['line']],
+  reporter: [['html', { outputFolder: 'reports', open: 'never' }], ['line'], ['allure-playwright']],
 
   // ⚙️ Configuración compartida para todos los tests
   use: {

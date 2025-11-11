@@ -184,3 +184,4 @@ button.btn-primary[type="submit"]	Botón con clase btn-primary y atributo type="
 div[class*="error"]	Cualquier div que tenga “error” en alguna parte de su clase.
 input[placeholder^="Enter"]	Input cuyo placeholder empieza con “Enter”.
 ```
+Allure: Se corren las pruebas, npx playwright test luego se corre el comando  npm run allure:generate y luego el comando npm run allure:open y por ultimo se entra a http://localhost:XXX/index.html
