@@ -1,14 +1,26 @@
+# Node
 node_modules/
-.env
-.playwright-report/
+npm-debug.log*
+package-lock.json
 
-# Playwright
-/test-results/
-/reports/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
-/allure-results/
-/allure-report/
-/ci-report/
+# Playwright y Allure reports
+playwright-report/
+playwright-report.zip
+reports/
+test-results/
+allure-report/
+allure-results/
+ci-report/
+
+# Logs y screenshots
+logs/
+screenshots/
+
+# Archivos del sistema o IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Archivos comprimidos o temporales
+*.zip
+*.tmp
