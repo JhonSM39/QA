@@ -26,15 +26,15 @@ export default defineConfig({
   reporter: [
     ['line'],
     ['html', { outputFolder: 'reports', open: 'never' }],
-    ['allure-playwright']
+    ['allure-playwright'],
   ],
 
   // ⚙️ Configuración compartida para todos los tests
   use: {
     baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
     screenshot: 'only-on-failure',
-    trace: 'on-first-retry',        // 🎯 genera trace en el primer fallo
-    video: 'retain-on-failure',     // guarda video solo si falla
+    trace: 'on-first-retry', // 🎯 genera trace en el primer fallo
+    video: 'retain-on-failure', // guarda video solo si falla
   },
 
   // 🌐 Proyectos (navegadores)
