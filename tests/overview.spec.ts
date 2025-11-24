@@ -1,6 +1,5 @@
 import { expect } from "@playwright/test";
 import { test } from "../src/fixtures/pageLogin";
-import { time } from "console";
 
 test.describe('Overview Scenarios', () => {
     test('Valida nombres, precios individuales por product, suma total del pedido y precio total con el tax incluido', async ({cartPage, checkoutPage, inventoryPage, overviewPage}) => {
@@ -14,7 +13,11 @@ test.describe('Overview Scenarios', () => {
         await checkoutPage.goToCheckout();
         await checkoutPage.sendInformationCheckout("Jhon", "Sanchez", "101110");
         await overviewPage.goToOverview();
+        const { name: nameBackpackOverview} = await cartPage.getNameAndPriceProductHome('Sauce Labs Backpack');
+        const { name: nameBikeOverview } = await cartPage.getNameAndPriceProductHome('Sauce Labs Bike Light');
         const priceTotalCheckout = Number(priceBackpackHome) + Number(priceBikeHome);
+        expect(nameBackpackHome).toEqual(nameBackpackOverview);
+        expect(nameBikeHome).toEqual(nameBikeOverview);
         console.log("TOTAL PRICE =>", priceTotalCheckout, priceBackpackHome, priceBikeHome);
         const priceTotalOverview = await overviewPage.ordenTotalPriceOverview();
         expect(priceTotalCheckout).toBe(priceTotalOverview);
