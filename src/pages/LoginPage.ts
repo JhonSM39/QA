@@ -21,11 +21,24 @@ export class LoginPage extends BasePage {
 
   async navigate() {
     const start = Date.now();
+
+    // --- LIMPIEZA ANTES DE NAVEGAR ---
+    await this.page.context().clearCookies(); // limpiar cookies antes de goto
+    await this.page.addInitScript(() => {
+      localStorage.clear();
+      sessionStorage.clear();
+    });
+
+    // --- NAVEGACIÓN ---
     await this.page.goto('/');
+
+    // --- ESPERAR QUE EL INPUT PRINCIPAL ESTÉ LISTO ---
+    await expect(this.usernameInput).toBeVisible({ timeout: 10000 });
+
+    // --- MEDICIÓN DEL TIEMPO ---
     const duration = Date.now() - start;
     logger.info(`Login page load time: ${duration}ms`);
-    await expect(this.usernameInput).toBeVisible();
-  }
+}
 
   async login(username: string, password: string) {
     await this.usernameInput.fill(username);
@@ -34,13 +47,13 @@ export class LoginPage extends BasePage {
   }
 
   async loginWithoutUsername(password: string): Promise<string> {
-    await this.type(this.passwordInput, password);
+    await this.sendText(this.passwordInput, password);
     await this.click(this.loginButton);
     return this.getError();
   }
 
   async loginWithoutPassword(username: string): Promise<string> {
-    await this.type(this.usernameInput, username);
+    await this.sendText(this.usernameInput, username);
     await this.click(this.loginButton);
     return this.getError();
   }

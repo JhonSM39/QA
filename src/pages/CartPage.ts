@@ -1,37 +1,35 @@
 import { BasePage } from '../core/BasePage';
+import { ProductComponent } from '../core/components/ProductComponent';
 import type { Page } from '@playwright/test';
 
 export class CartPage extends BasePage {
   //Localizadores
   private readonly cart;
+  private readonly product: ProductComponent;
 
   constructor(page: Page) {
     super(page);
     this.cart = page.locator('#shopping_cart_container');
+    this.product = new ProductComponent(page);
   }
 
   async getNameAndPriceProductHome(
     productName: string
-  ): Promise<{ name: string; price: string }> {
-    const productLocator = this.page.locator(
-      `[data-test="inventory-item"]:has([data-test="inventory-item-name"]:has-text("${productName}"))`
-    );
+  ): Promise<{ name: string; price: number }> {
+    const { name, price } = await this.product.getNameAndPrice(productName);
 
-    const priceLocator = productLocator.locator('[data-test="inventory-item-price"]');
-    const nameLocator = productLocator.locator('[data-test="inventory-item-name"]');
-    const nameProductText = await nameLocator.textContent();
-    const priceProductText = await priceLocator.textContent();
     return {
-      name: nameProductText?.trim() || '',
-      price: priceProductText?.trim() || '',
+      name: name?.trim() || '',
+      price: this.extractNumber(price)  // <--- limpia aquí
     };
   }
 
+  private extractNumber(text: string): number {
+      return Number(text.replace(/[^0-9.]/g, ""));
+  }
+
   async removeProductCart(productName: string) {
-    const removeProduct = this.page.locator(
-      `[data-test="inventory-item"]:has([data-test="inventory-item-name"]:has-text("${productName}")) [data-test="remove-sauce-labs-bike-light"]`
-    );
-    await removeProduct.click();
+    await this.product.getRemoveProductButton(productName).click();
   }
 
   async goToCar() {

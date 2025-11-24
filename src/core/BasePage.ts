@@ -14,7 +14,6 @@ export class BasePage {
 
       // Esperar que NO esté cubierto
       await expect(element).toBeEnabled();
-      await expect(element).toBeEnabled();
 
       // No uses trial en Safari/WebKit
       await element.click();
@@ -24,7 +23,7 @@ export class BasePage {
     }
   }
 
-  protected async type(element: Locator, text: string) {
+  protected async sendText(element: Locator, text: string) {
     logger.info(`Typing "${text}" into ${element}`);
     await element.waitFor({ state: 'visible' });
     await element.fill(text);

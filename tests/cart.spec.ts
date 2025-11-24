@@ -2,10 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../src/fixtures/pageLogin';
 
 test.describe('Cart Scenarios', () => {
-  test('Valida que aparecen los mismos nombres y precios de los productos', async ({
-    cartPage,
-    inventoryPage,
-  }) => {
+  test('Valida que aparecen los mismos nombres y precios de los productos', async ({ cartPage, inventoryPage }) => {
     const { name: nameBackpackHome, price: priceBackpackHome } =
       await cartPage.getNameAndPriceProductHome('Sauce Labs Backpack');
     const { name: nameBikeHome, price: priceBikeHome } =

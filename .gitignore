@@ -11,6 +11,8 @@ test-results/
 allure-report/
 allure-results/
 ci-report/
+.env
+.env.*
 
 # Logs y screenshots
 logs/
